@@ -1,0 +1,12 @@
+Controls arrow keys 
+
+Goal go to end of labirynth on grid
+
+Objstacles enemmies move at the same time as player
+
+Game manager 
+	- State Machine "ish"
+
+Singleton
+
+	-Player
