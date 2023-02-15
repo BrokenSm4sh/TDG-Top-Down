@@ -10,12 +10,16 @@ namespace States
         public InGameState InGameState;
 
         public EndGameState EndGameState;
-        
+
+        public GameObject MainMenu;
+        public GameObject PauseMenu;
+        public GameObject EndMenu { get; set; }
+
         public void Init()
         {
-            GameStartState = new GameStartState(this);
+            GameStartState = new GameStartState(this,MainMenu);
             InGameState = new InGameState(this);
-            EndGameState = new EndGameState(this);
+            EndGameState = new EndGameState(this,EndMenu);
             _currentState = GameStartState;
         }
 

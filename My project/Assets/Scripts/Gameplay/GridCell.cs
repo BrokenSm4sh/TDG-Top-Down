@@ -11,6 +11,9 @@ namespace Gameplay
         [SerializeField] private Material walkableMat;
 
         [SerializeField] private Material nonWalkableMat;
+        
+        [SerializeField] public Material startPointMat;
+        [SerializeField] public Material endPointMat;
 
         [SerializeField]
         private MeshRenderer currentMat ;
@@ -36,6 +39,15 @@ namespace Gameplay
             }
         }
 
+        public void SetStartPoint()
+        {
+            currentMat.material = startPointMat;
+        }
+
+        public void SetEndpoint()
+        {
+            currentMat.material = endPointMat;
+        }
 
 
 
@@ -44,7 +56,7 @@ namespace Gameplay
 
         }
     }
-
+#if UNITY_EDITOR
     [CustomEditor(typeof(GridCell))]
     public class GridSwitcher : Editor
     {
@@ -65,4 +77,5 @@ namespace Gameplay
             }
         }
     }
+#endif
 }

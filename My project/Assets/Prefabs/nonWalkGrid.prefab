@@ -113,4 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkableMat: {fileID: 2100000, guid: c479759b46504be4b838bd882f60b8f3, type: 2}
   nonWalkableMat: {fileID: 2100000, guid: 7cfdc26943fc101429a31c844769edc0, type: 2}
+  startPointMat: {fileID: 2100000, guid: 6ac2e47cb34280a4898e66d5c36e6564, type: 2}
+  endPointMat: {fileID: 2100000, guid: aa438dc3794b6e740949cc463cfca998, type: 2}
   currentMat: {fileID: 7083383272120372316}
+  _walkable: 0

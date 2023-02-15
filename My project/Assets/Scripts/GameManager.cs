@@ -3,8 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Gameplay;
 using States;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+using StateMachine = States.StateMachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,15 +21,20 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject _playerObject;
     
-    [SerializeField]
-    private GridManager grid;
     
-    [SerializeField]
-    private Vector2Int startPoint;
+    private GridManager _currentGrid;
+    private int _currentLevel;
     
-    [SerializeField]
-    private Vector2Int endPoint;
+   
+
+    [SerializeField] private GameObject MainMenu;
     
+    [SerializeField] private GameObject EndMenu;
+
+    [SerializeField]
+    private List<GridManager> Levels;
+
+
 
 
     private void Awake()
@@ -44,6 +53,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameFlowStateMachine = new GameFlowStateMachine();
+        GameFlowStateMachine.MainMenu = MainMenu;
+        GameFlowStateMachine.EndMenu = EndMenu;
         GameFlowStateMachine.Init();
         
         StateMachines.Add(GameFlowStateMachine);
@@ -51,7 +62,8 @@ public class GameManager : MonoBehaviour
         
         _player = new Player();
         _player.Init(GameFlowStateMachine);
-        MovePlayer(startPoint);
+        _currentLevel = 0;
+        SetLevel(_currentLevel);
     }
 
  
@@ -68,13 +80,12 @@ public class GameManager : MonoBehaviour
 
     public void MovePlayer(Vector2Int displacement)
     {
-        if (displacement == endPoint)
+        Vector2Int newGridPos = _currentGrid.MoveObjectOnGrid(_playerObject,displacement);
+        
+        if (_currentGrid.AtEndPoint(_playerObject))
         {
-            EndGame();
-        }
-        else
-        {
-            grid.MoveObjectOnGrid(_playerObject,displacement);
+            _currentLevel++;
+            SetLevel(_currentLevel);
         }
     }
 
@@ -83,8 +94,28 @@ public class GameManager : MonoBehaviour
         _player?.CleanUp();
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void EndGame()
     {
         GameFlowStateMachine.EndGame();
+    }
+
+    // ReSharper disable Unity.PerformanceAnalysis
+    public void SetLevel(int i)
+    {
+        if (i >= Levels.Count)
+        {
+            EndGame();
+            return;
+        }
+        if (i > 0)
+        {
+            _currentGrid.gameObject.SetActive(false);
+        }
+        
+        _currentGrid = Levels[i];
+        _currentGrid.gameObject.SetActive(true);
+        _currentGrid.SetAtStart(_playerObject);
+        _currentGrid.SetMapMarkers();
     }
 }

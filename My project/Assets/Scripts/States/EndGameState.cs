@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace States
 {
@@ -6,14 +7,17 @@ namespace States
     {
         private GameFlowStateMachine _sm;
 
-        
-        public EndGameState(StateMachine stateMachine) : base(nameof(EndGameState), stateMachine)
+        private GameObject _endScreen;
+
+        public EndGameState(StateMachine stateMachine, GameObject EndScreen) : base(nameof(EndGameState), stateMachine)
         {
+            _endScreen = EndScreen;
         }
 
         public override void EnterState()
         {
             Debug.Log("Game is Endin");
+            _endScreen.SetActive(true);
         }
 
         public override void ExitState()
@@ -26,6 +30,10 @@ namespace States
             if (Input.GetKeyUp(KeyCode.P))
             {
                 ExitState();
+            }
+            if (Input.GetKeyUp(KeyCode.R))
+            {
+                SceneManager.LoadScene(0);
             }
         }
     }
