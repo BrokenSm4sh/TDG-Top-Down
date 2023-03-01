@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
     private GameObject _playerObject;
     
     
-    private GridManager _currentGrid;
+    //private GridManager _currentGrid;
+    private Level _currentGridLevel;
     private int _currentLevel;
     
    
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject EndMenu;
 
     [SerializeField]
-    private List<GridManager> Levels;
+    private List<Level> Levels;
 
 
 
@@ -80,9 +81,9 @@ public class GameManager : MonoBehaviour
 
     public void MovePlayer(Vector2Int displacement)
     {
-        Vector2Int newGridPos = _currentGrid.MoveObjectOnGrid(_playerObject,displacement);
+        Vector2Int newGridPos = _currentGridLevel.MoveObjectOnGrid(_playerObject,displacement);
         
-        if (_currentGrid.AtEndPoint(_playerObject))
+        if (_currentGridLevel.CurrentGrid.AtEndPoint(_playerObject))
         {
             _currentLevel++;
             SetLevel(_currentLevel);
@@ -110,12 +111,17 @@ public class GameManager : MonoBehaviour
         }
         if (i > 0)
         {
-            _currentGrid.gameObject.SetActive(false);
+            _currentGridLevel.gameObject.SetActive(false);
         }
         
-        _currentGrid = Levels[i];
-        _currentGrid.gameObject.SetActive(true);
-        _currentGrid.SetAtStart(_playerObject);
-        _currentGrid.SetMapMarkers();
+        _currentGridLevel = Levels[i];
+        _currentGridLevel.gameObject.SetActive(true);
+        _currentGridLevel.CurrentGrid.SetAtStart(_playerObject);
+        _currentGridLevel.CurrentGrid.SetMapMarkers();
+    }
+
+    public void ChangeCurrentLevelLayout()
+    {
+        Levels[_currentLevel].SwitchLayout();
     }
 }

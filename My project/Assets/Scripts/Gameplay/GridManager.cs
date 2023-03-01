@@ -126,5 +126,22 @@ namespace Gameplay
         {
            return grid.LocalToCell(obj.transform.position) == new Vector3Int(endPoint.x,0,endPoint.y);
         }
+
+        public bool IsObjectInRange(GameObject centerObject, GameObject outwardsObject, uint cellRange)
+        {
+            if (cellRange < 1)
+            {
+                Debug.Log("Cell range under what is checkable, make sure it is over 1 ");
+                return false;
+            }
+            
+            Vector3Int centerGridPosition = grid.WorldToCell(centerObject.transform.position);
+            Vector3Int outGridPosition = grid.WorldToCell(outwardsObject.transform.position);
+            int rangeComparerX = Math.Abs(centerGridPosition.x - outGridPosition.x);
+            int rangeComparerZ = Math.Abs(centerGridPosition.z - outGridPosition.z);
+
+            return rangeComparerX <= cellRange && rangeComparerZ <= cellRange;
+
+        }
     }
 }
