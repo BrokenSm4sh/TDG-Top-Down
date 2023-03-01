@@ -5,8 +5,19 @@ namespace Gameplay
 {
     public class LevelLayoutSwitcher:MonoBehaviour
     {
-        private void Awake()
+        private bool isUsable;
+        
+        private void Start()
         {
+            GameManager.Instance.GameFlowInitiated += OnGameFlowInitiated;
+            
+            isUsable = false;
+        }
+
+        
+        private void OnGameFlowInitiated()
+        {
+            GameManager.Instance.GameFlowInitiated -= OnGameFlowInitiated;
             GameManager.Instance.GameFlowStateMachine.InGameState.InputReceived += ManageKey;
         }
 
@@ -20,17 +31,27 @@ namespace Gameplay
 
         private void SwitchLayout()
         {
-            GameManager.Instance.ChangeCurrentLevelLayout();
-        }
-
-        private void OnDisable()
-        {
-            GameManager.Instance.GameFlowStateMachine.InGameState.InputReceived -= ManageKey;
+            if (GameManager.Instance.CurrentGridLevel.CurrentGrid.IsObjectInRange(gameObject, GameManager.Instance.PlayerObject, 1))
+            {
+                GameManager.Instance.ChangeCurrentLevelLayout();
+            }
         }
 
         private void OnEnable()
         {
-            GameManager.Instance.GameFlowStateMachine.InGameState.InputReceived += ManageKey;
+            if (isUsable)
+            {
+                GameManager.Instance.GameFlowStateMachine.InGameState.InputReceived += ManageKey;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (isUsable)
+            {
+                GameManager.Instance.GameFlowStateMachine.InGameState.InputReceived -= ManageKey;
+            }
+
         }
     }
 }

@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     
     //private GridManager _currentGrid;
     private Level _currentGridLevel;
+
+    public Level CurrentGridLevel => _currentGridLevel;
+
     private int _currentLevel;
     
    
@@ -35,8 +38,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<Level> Levels;
 
+    public event Action GameFlowInitiated;
 
-
+    public GameObject PlayerObject
+    {
+        get
+        {
+            return _playerObject;
+        }
+    }
 
     private void Awake()
     {
@@ -57,7 +67,13 @@ public class GameManager : MonoBehaviour
         GameFlowStateMachine.MainMenu = MainMenu;
         GameFlowStateMachine.EndMenu = EndMenu;
         GameFlowStateMachine.Init();
-        
+
+        if (GameFlowInitiated != null)
+        {
+            GameFlowInitiated();
+        }
+
+
         StateMachines.Add(GameFlowStateMachine);
         GameFlowStateMachine.StartMachine();
         

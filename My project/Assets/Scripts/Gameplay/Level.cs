@@ -11,6 +11,12 @@ public class Level : MonoBehaviour
     
     [SerializeField]
     private GridManager secondLayout;
+    
+    [SerializeField]
+    private LevelLayoutSwitcher layoutSwitch;
+        
+    [SerializeField]
+    private Vector2Int layoutSwitchPosition;
 
     public GridManager CurrentGrid
     {
@@ -23,6 +29,9 @@ public class Level : MonoBehaviour
         firstLayout.gameObject.SetActive(true);
         secondLayout.gameObject.SetActive(false);
         CurrentGrid = firstLayout;
+        
+        LevelLayoutSwitcher lSwitch = Instantiate(layoutSwitch,transform);
+        MoveObjectOnGrid(lSwitch.gameObject, layoutSwitchPosition);
     }
 
     public void SwitchLayout()
@@ -41,8 +50,8 @@ public class Level : MonoBehaviour
         }
     }
 
-    public Vector2Int MoveObjectOnGrid(GameObject playerObject, Vector2Int displacement)
+    public Vector2Int MoveObjectOnGrid(GameObject movObject, Vector2Int displacement)
     {
-        return CurrentGrid.MoveObjectOnGrid(playerObject, displacement);
+        return CurrentGrid.MoveObjectOnGrid(movObject, displacement);
     }
 }
