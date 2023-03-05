@@ -38280,7 +38280,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerObject
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5343162634633015246, guid: 18334e4b441f83e44a2f9bc15239c58e, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5513597262718605026, guid: 18334e4b441f83e44a2f9bc15239c58e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 18334e4b441f83e44a2f9bc15239c58e, type: 3}
 --- !u!1 &986226390
 GameObject:
@@ -41705,6 +41710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerObject: {fileID: 821795717}
+  hasKey: 0
   MainMenu: {fileID: 1693562868}
   EndMenu: {fileID: 2049912445}
   Levels:
@@ -61463,6 +61469,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599930275}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1603217990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5343162634655022733, guid: 18334e4b441f83e44a2f9bc15239c58e, type: 3}
+  m_PrefabInstance: {fileID: 978534940}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1603217995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603217990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c66f304244b8db488ffc63873134af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1610647876
 GameObject:
   m_ObjectHideFlags: 0
@@ -67201,6 +67224,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773943586}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1774215616 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1485763303463702213, guid: d3be6ba3250be5a4cb03d7e9849ec96b, type: 3}
+  m_PrefabInstance: {fileID: 2030374854}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1779559462
 GameObject:
   m_ObjectHideFlags: 0
@@ -75706,6 +75734,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3563745340542796680, guid: d3be6ba3250be5a4cb03d7e9849ec96b, type: 3}
+      propertyPath: coll
+      value: 
+      objectReference: {fileID: 1774215616}
+    - target: {fileID: 7261923279012593437, guid: d3be6ba3250be5a4cb03d7e9849ec96b, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8201263520127910980, guid: d3be6ba3250be5a4cb03d7e9849ec96b, type: 3}
       propertyPath: m_Name
       value: Key
@@ -75715,16 +75751,20 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8380861875145511195, guid: d3be6ba3250be5a4cb03d7e9849ec96b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8380861875145511195, guid: d3be6ba3250be5a4cb03d7e9849ec96b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.054988325
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8380861875145511195, guid: d3be6ba3250be5a4cb03d7e9849ec96b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8063376
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 8380861875145511195, guid: d3be6ba3250be5a4cb03d7e9849ec96b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.29214382
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8380861875145511195, guid: d3be6ba3250be5a4cb03d7e9849ec96b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -75754,7 +75794,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3563745340542796680, guid: d3be6ba3250be5a4cb03d7e9849ec96b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d3be6ba3250be5a4cb03d7e9849ec96b, type: 3}
 --- !u!1 &2034024875
 GameObject:

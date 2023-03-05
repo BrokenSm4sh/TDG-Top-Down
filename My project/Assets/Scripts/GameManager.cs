@@ -28,8 +28,11 @@ public class GameManager : MonoBehaviour
     public Level CurrentGridLevel => _currentGridLevel;
 
     private int _currentLevel;
-    
-   
+
+    public bool hasKey;
+
+
+
 
     [SerializeField] private GameObject MainMenu;
     
@@ -81,6 +84,7 @@ public class GameManager : MonoBehaviour
         _player.Init(GameFlowStateMachine);
         _currentLevel = 0;
         SetLevel(_currentLevel);
+        hasKey = false;
     }
 
  
@@ -110,6 +114,7 @@ public class GameManager : MonoBehaviour
     {
         _player?.CleanUp();
     }
+
 
     // ReSharper disable Unity.PerformanceAnalysis
     public void EndGame()
