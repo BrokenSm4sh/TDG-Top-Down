@@ -1,13 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Gameplay;
 using States;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using StateMachine = States.StateMachine;
 
 public class GameManager : MonoBehaviour

@@ -98,15 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c66f304244b8db488ffc63873134af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 7261923279012593437}
-  coll: {fileID: 1485763303463702213}
-  player: {fileID: 1204494255614355345, guid: c08992ebe80dcab44883c7c2c49aeff0, type: 3}
-  key: {fileID: 8380861875145511195}
-  fpsCam: {fileID: 0}
-  pickUpRange: 0
-  dropForwardForce: 0
-  dropUpwardForce: 0
-  equipped: 0
 --- !u!54 &7261923279012593437
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,7 +122,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8201263520127910980}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

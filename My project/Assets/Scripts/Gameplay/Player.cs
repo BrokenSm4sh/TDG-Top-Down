@@ -51,8 +51,7 @@ namespace Gameplay
 
         public void CleanUp()
         {
-            GameManager.Instance.GameFlowStateMachine.InGameState.InputReceived -= ManageKey;
-
+            GameManager.Instance.GameFlowStateMachine.InGameState.InputReceived -= ManageKey;   
         }
     }
 }

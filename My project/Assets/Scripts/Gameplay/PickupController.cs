@@ -6,7 +6,7 @@ public class PickupController : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Key"))
+        if (other.gameObject.CompareTag("Player"))
         {
             Destroy(this.gameObject);
             GameManager.Instance.hasKey = true;

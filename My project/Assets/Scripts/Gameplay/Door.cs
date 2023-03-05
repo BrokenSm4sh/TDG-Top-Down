@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
 namespace Gameplay
 {
-    public class LevelLayoutSwitcher:MonoBehaviour
+    public class Door:MonoBehaviour
     {
         private bool isUsable;
         
@@ -25,34 +24,17 @@ namespace Gameplay
         {
             if (Input.GetKey(KeyCode.F))
             {
-                SwitchLayout();
+                Open();
             }
         }
 
-        private void SwitchLayout()
+        private void Open()
         {
             if (GameManager.Instance.CurrentGridLevel.CurrentGrid.IsObjectInRange(gameObject, GameManager.Instance.PlayerObject, 1)
                 && GameManager.Instance.hasKey)
             {
-                GameManager.Instance.ChangeCurrentLevelLayout();
+                gameObject.SetActive(false);
             }
-        }
-
-        private void OnEnable()
-        {
-            if (isUsable)
-            {
-                GameManager.Instance.GameFlowStateMachine.InGameState.InputReceived += ManageKey;
-            }
-        }
-
-        private void OnDisable()
-        {
-            if (isUsable)
-            {
-                GameManager.Instance.GameFlowStateMachine.InGameState.InputReceived -= ManageKey;
-            }
-
         }
     }
 }
