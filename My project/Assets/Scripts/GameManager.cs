@@ -134,6 +134,7 @@ public class GameManager : MonoBehaviour
         _currentGridLevel.gameObject.SetActive(true);
         _currentGridLevel.CurrentGrid.SetAtStart(_playerObject);
         _currentGridLevel.CurrentGrid.SetMapMarkers();
+        hasKey = false;
     }
 
     public void ChangeCurrentLevelLayout()
